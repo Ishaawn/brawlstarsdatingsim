@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -30,7 +31,7 @@ public class GameScreen implements Screen {
     Rectangle bucketRectangle;
     Rectangle dropRectangle;
     int dropsGathered;
-
+    BitmapFont font = new BitmapFont();
     public GameScreen(final Drop game) {
         this.game = game;
 
@@ -123,21 +124,29 @@ public class GameScreen implements Screen {
 
     private void draw() {
         ScreenUtils.clear(Color.BLACK);
+
+
+
         game.viewport.apply();
         game.batch.setProjectionMatrix(game.viewport.getCamera().combined);
         game.batch.begin();
+
+
+
 
         float worldWidth = game.viewport.getWorldWidth();
         float worldHeight = game.viewport.getWorldHeight();
 
         game.batch.draw(backgroundTexture, 0, 0, worldWidth, worldHeight);
         bucketSprite.draw(game.batch);
-
+        game.font.draw(game.batch, "hiiiii", 0,worldHeight);
         game.font.draw(game.batch, "Drops collected: " + dropsGathered, 0, worldHeight);
 
         for (Sprite dropSprite : dropSprites) {
             dropSprite.draw(game.batch);
         }
+        //font.BitmapFontData.setScale(.2f);
+
 
         game.batch.end();
     }
