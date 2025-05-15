@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
@@ -11,11 +12,13 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class Main extends ApplicationAdapter {
     private SpriteBatch batch;
     private Texture image;
-
+    Sprite shelly;
     @Override
     public void create() {
         batch = new SpriteBatch();
-        image = new Texture("libgdx.png");
+        image = new Texture("shelly.png");
+        shelly = new Sprite(image);
+        resize(40, 40);
 
     }
 
@@ -23,7 +26,7 @@ public class Main extends ApplicationAdapter {
     public void render() {
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
         batch.begin();
-        batch.draw(image, 140, 210);
+        shelly.draw(batch);
         batch.end();
     }
 
